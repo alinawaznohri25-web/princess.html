@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Princess Birthday | By Ali Nawaz</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+ margin:0;
+ height:100vh;
+ overflow:hidden;
+ background:#080014;
+ color:white;
+ font-family:Arial,sans-serif;
+ text-align:center;
+}
+
+body:before{
+ content:"";
+ position:fixed;
+ inset:-50%;
+ background:conic-gradient(red,orange,yellow,lime,cyan,blue,magenta,red);
+ filter:blur(100px);
+ opacity:.4;
+ animation:rainbow 5s linear infinite;
+ z-index:-2;
+}
+
+@keyframes rainbow{
+ to{transform:rotate(360deg)}
+}
+
+body:after{
+ content:"";
+ position:fixed;
+ inset:0;
+ pointer-events:none;
+ background:linear-gradient(90deg,
+ rgba(255,0,100,.2),transparent,
+ rgba(0,200,255,.2));
+ animation:party 2s infinite alternate;
+ z-index:5;
+}
+
+@keyframes party{
+ from{opacity:.2;filter:hue-rotate(0deg)}
+ to{opacity:1;filter:hue-rotate(360deg)}
+}
+
+/* RGB LIGHTS */
+
+.light{
+ position:absolute;
+ width:8px;
+ height:8px;
+ border-radius:50%;
+ animation:blink .7s infinite alternate;
+}
+
+@keyframes blink{
+ from{opacity:.2;box-shadow:0 0 5px currentColor}
+ to{opacity:1;box-shadow:0 0 25px 8px currentColor}
+}
+
+.laser{
+ position:absolute;
+ width:3px;
+ height:100vh;
+ opacity:.5;
+ filter:blur(3px);
+ animation:laser 2s infinite alternate;
+}
+
+@keyframes laser{
+ from{transform:rotate(-20deg)}
+ to{transform:rotate(20deg)}
+}
+
+/* INTRO */
+
+#intro{
+ padding:80px 10px;
+ position:relative;
+ z-index:2;
+}
+
+h1{
+ text-shadow:0 0 15px magenta,0 0 30px cyan;
+}
+
+.gift{
+ font-size:120px;
+ margin:35px;
+ animation:giftGlow 1s infinite alternate;
+}
+
+@keyframes giftGlow{
+ from{filter:drop-shadow(0 0 10px red)}
+ to{filter:drop-shadow(0 0 40px cyan)}
+}
+
+button{
+ padding:16px 30px;
+ border:none;
+ border-radius:30px;
+ color:white;
+ font-size:18px;
+ font-weight:bold;
+ background:linear-gradient(90deg,red,orange,magenta,blue,cyan);
+ background-size:300%;
+ animation:buttonLight 3s infinite linear;
+}
+
+@keyframes buttonLight{
+ to{background-position:300%}
+}
+
+/* BIRTHDAY SHOW */
+
+#show{
+ display:none;
+ padding:65px 10px 10px;
+ position:relative;
+ z-index:2;
+}
+
+.word{
+ font-size:34px;
+ font-weight:bold;
+ letter-spacing:4px;
+ margin:18px 0;
+}
+
+.letter{
+ display:inline-block;
+ opacity:0;
+ transform:translateY(50px) scale(.3);
+ animation:appear .6s forwards;
+}
+
+@keyframes appear{
+ to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+.neon{
+ animation:neon 1s infinite alternate;
+}
+
+@keyframes neon{
+ from{text-shadow:0 0 10px red,0 0 20px magenta}
+ to{text-shadow:0 0 20px cyan,0 0 40px blue,0 0 60px pink}
+}
+
+#cake{
+ font-size:60px;
+ margin:15px;
+ animation:giftGlow 1s infinite alternate;
+}
+
+#final{
+ font-size:17px;
+ line-height:1.7;
+ color:#fff;
+ text-shadow:0 0 12px magenta,0 0 25px cyan;
+ margin-top:20px;
+}
+
+.credit{
+ margin-top:20px;
+ font-size:19px;
+ font-weight:bold;
+ color:gold;
+ text-shadow:0 0 10px gold,0 0 25px orange;
+}
+
+/* FLOATING EFFECTS */
+
+.star{
+ position:absolute;
+ top:-30px;
+ font-size:22px;
+ animation:fall linear forwards;
+ z-index:3;
+}
+
+@keyframes fall{
+ to{
+ transform:translateY(110vh) rotate(360deg);
+ opacity:0;
+ }
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="intro">
+
+<h1>👑 A SPECIAL SURPRISE 👑</h1>
+
+<div class="gift">🎁</div>
+
+<h2>For Princess ❤️</h2>
+
+<button onclick="start()">
+OPEN YOUR GIFT 🎁
+</button>
+
+</div>
+
+<div id="show">
+
+<div id="happy" class="word neon"></div>
+
+<div id="birthday" class="word neon"></div>
+
+<div id="cake">🎂</div>
+
+<div id="princess" class="word neon"></div>
+
+<div id="final">
+
+💖 YOU ARE VERY SPECIAL 💖
+
+<br>
+✨ Always Keep Smiling 😊
+
+<br>
+💕 Always Stay Happy
+
+<br>
+🌟 Keep Shining Like a Star
+
+<br>
+👑 Live Your Life Like a Queen
+
+<br>
+🌹 May All Your Dreams Come True
+
+<br>
+🎂 Lots of Love & Best Wishes ❤️
+
+<br>
+💗 STAY BLESSED FOREVER 💗
+
+</div>
+
+<div class="credit">
+Made With ❤️ By Ali Nawaz 👑
+</div>
+
+</div>
+
+<script>
+
+/* RGB LIGHTS */
+
+for(let i=0;i<45;i++){
+
+ let l=document.createElement("div");
+
+ l.className="light";
+ l.style.left=Math.random()*100+"%";
+ l.style.top=Math.random()*100+"%";
+
+ l.style.color=[
+ "red","cyan","yellow","magenta","lime","blue"
+ ][i%6];
+
+ l.style.animationDelay=Math.random()+"s";
+
+ document.body.appendChild(l);
+}
+
+/* LASER LIGHTS */
+
+for(let i=0;i<6;i++){
+
+ let laser=document.createElement("div");
+
+ laser.className="laser";
+ laser.style.left=(i*18)+"%";
+
+ laser.style.background=[
+ "red","cyan","magenta","blue","yellow","lime"
+ ][i];
+
+ document.body.appendChild(laser);
+}
+
+/* LETTER ANIMATION */
+
+function animateText(id,text,delay){
+
+ let box=document.getElementById(id);
+ box.innerHTML="";
+
+ [...text].forEach((letter,i)=>{
+
+  let span=document.createElement("span");
+
+  span.className="letter";
+  span.textContent=letter;
+
+  span.style.animationDelay=(i*delay)+"s";
+
+  box.appendChild(span);
+
+ });
+}
+
+/* CELEBRATION */
+
+function celebration(){
+
+ for(let i=0;i<35;i++){
+
+  let star=document.createElement("div");
+
+  star.className="star";
+
+  star.innerHTML=[
+  "💖","✨","🎉","⭐","🌟","🌹","💕"
+  ][Math.floor(Math.random()*7)];
+
+  star.style.left=Math.random()*100+"%";
+
+  star.style.animationDuration=
+  (2+Math.random()*4)+"s";
+
+  star.style.animationDelay=
+  Math.random()*2+"s";
+
+  document.body.appendChild(star);
+
+  setTimeout(()=>star.remove(),7000);
+ }
+}
+
+/* START */
+
+function start(){
+
+ document.getElementById("intro").style.display="none";
+
+ document.getElementById("show").style.display="block";
+
+ celebration();
+
+ animateText("happy","HAPPY",0.35);
+
+ setTimeout(()=>{
+  animateText("birthday","BIRTHDAY",0.25);
+ },2500);
+
+ setTimeout(()=>{
+  animateText("princess","PRINCESS",0.35);
+ },5500);
+
+ setInterval(celebration,5000);
+
+}
+
+</script>
+
+</body>
+</html>
